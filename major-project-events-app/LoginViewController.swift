@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
 
@@ -20,10 +21,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         emailTextField.delegate = self
         passwordTextField.delegate = self
         
-        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard)))
+        self.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(LoginViewController.dismissKeyboard)))
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
+        
+        self.callService()
     }
     
     override func didReceiveMemoryWarning() {
@@ -31,9 +34,24 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    func dismissKeyboard() {
+    @objc
+    private func dismissKeyboard() {
         emailTextField.resignFirstResponder()
         passwordTextField.resignFirstResponder()
+    }
+    
+    func callService() {
+        Alamofire.request(.GET, "http://api.majorproject.dev/school/")
+            .responseJSON { response in
+                print(response.request)  // original URL request
+                print(response.response) // URL response
+                print(response.data)     // server data
+                print(response.result)   // result of response serialization
+                
+                if let JSON = response.result.value {
+                    print("JSON: \(JSON)")
+                }
+        }
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
@@ -48,7 +66,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             }
         } else if (textField == passwordTextField) {
             // If on password.
-            if ((!(emailTextField.text?.isEmpty)! && !(passwordTextField.text?.isEmpty)!)) {
+            let isEmailEmpty: Bool = emailTextField.text!.isEmpty
+            
+            if ((!isEmailEmpty && !(passwordTextField.text?.isEmpty)!)) {
                 // And email + password text fields are not empty, return to sign in button.
                 self.signInTapped(self)
             } else if ((emailTextField.text?.isEmpty)!) {
