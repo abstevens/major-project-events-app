@@ -17,6 +17,9 @@
 		B98576231D37A8EE009E8532 /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98576221D37A8EE009E8532 /* ProfileTableViewController.swift */; };
 		B98576251D37A8FC009E8532 /* EditProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98576241D37A8FC009E8532 /* EditProfileTableViewController.swift */; };
 		B98576271D37A90A009E8532 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98576261D37A90A009E8532 /* SettingsTableViewController.swift */; };
+		B9A83C181D3D35F3006B3D0D /* EventsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9A83C161D3D35F3006B3D0D /* EventsTableViewCell.swift */; };
+		B9A83C3B1D3E67CB006B3D0D /* EventsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9A83C3A1D3E67CB006B3D0D /* EventsTableViewCell.xib */; };
+		B9A83C5D1D3EBE53006B3D0D /* EventResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9A83C5C1D3EBE53006B3D0D /* EventResponse.swift */; };
 		E5463ADA8E511E9844A5C028 /* Pods_major_project_events_app.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65DE681026A2B627DEFA2148 /* Pods_major_project_events_app.framework */; };
 /* End PBXBuildFile section */
 
@@ -36,6 +39,9 @@
 		B98576221D37A8EE009E8532 /* ProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
 		B98576241D37A8FC009E8532 /* EditProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileTableViewController.swift; sourceTree = "<group>"; };
 		B98576261D37A90A009E8532 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
+		B9A83C161D3D35F3006B3D0D /* EventsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsTableViewCell.swift; sourceTree = "<group>"; };
+		B9A83C3A1D3E67CB006B3D0D /* EventsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventsTableViewCell.xib; sourceTree = "<group>"; };
+		B9A83C5C1D3EBE53006B3D0D /* EventResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +94,7 @@
 		B98576091D37A835009E8532 /* major-project-events-app */ = {
 			isa = PBXGroup;
 			children = (
+				B9A83C5E1D3EBE5D006B3D0D /* Service */,
 				B985760A1D37A835009E8532 /* AppDelegate.swift */,
 				B98576281D3811D0009E8532 /* UI */,
 				B98576111D37A835009E8532 /* Assets.xcassets */,
@@ -111,12 +118,22 @@
 			children = (
 				B985761C1D37A891009E8532 /* LoginViewController.swift */,
 				B985761E1D37A8BA009E8532 /* EventsTableViewController.swift */,
+				B9A83C161D3D35F3006B3D0D /* EventsTableViewCell.swift */,
+				B9A83C3A1D3E67CB006B3D0D /* EventsTableViewCell.xib */,
 				B98576201D37A8D5009E8532 /* CreateTableViewController.swift */,
 				B98576221D37A8EE009E8532 /* ProfileTableViewController.swift */,
 				B98576241D37A8FC009E8532 /* EditProfileTableViewController.swift */,
 				B98576261D37A90A009E8532 /* SettingsTableViewController.swift */,
 			);
 			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		B9A83C5E1D3EBE5D006B3D0D /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				B9A83C5C1D3EBE53006B3D0D /* EventResponse.swift */,
+			);
+			name = Service;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -181,6 +198,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B9A83C3B1D3E67CB006B3D0D /* EventsTableViewCell.xib in Resources */,
 				B98576151D37A835009E8532 /* LaunchScreen.storyboard in Resources */,
 				B98576121D37A835009E8532 /* Assets.xcassets in Resources */,
 				B98576101D37A835009E8532 /* Main.storyboard in Resources */,
@@ -245,7 +263,9 @@
 				B985761D1D37A891009E8532 /* LoginViewController.swift in Sources */,
 				B98576231D37A8EE009E8532 /* ProfileTableViewController.swift in Sources */,
 				B98576211D37A8D5009E8532 /* CreateTableViewController.swift in Sources */,
+				B9A83C5D1D3EBE53006B3D0D /* EventResponse.swift in Sources */,
 				B985760B1D37A835009E8532 /* AppDelegate.swift in Sources */,
+				B9A83C181D3D35F3006B3D0D /* EventsTableViewCell.swift in Sources */,
 				B985761F1D37A8BA009E8532 /* EventsTableViewController.swift in Sources */,
 				B98576251D37A8FC009E8532 /* EditProfileTableViewController.swift in Sources */,
 				B98576271D37A90A009E8532 /* SettingsTableViewController.swift in Sources */,

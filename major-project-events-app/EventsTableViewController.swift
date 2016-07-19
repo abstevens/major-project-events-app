@@ -7,45 +7,98 @@
 //
 
 import UIKit
+import Alamofire
+import ObjectMapper
+
+struct CellData {
+    var organizerId: Int?
+    var title: String?
+    var description: String?
+    var dateTime: String?
+    var location: String?
+    var price: Int?
+    var limitReservations: Int?
+}
 
 class EventsTableViewController: UITableViewController {
+    
+    var dataSource:[CellData] = [CellData]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let nib = UINib(nibName: "EventsTableViewCell", bundle: nil)
+        self.tableView.registerNib(nib, forCellReuseIdentifier: "EventsTableViewCellID")
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        self.tableView.estimatedRowHeight = 171
+        self.tableView.rowHeight = UITableViewAutomaticDimension
     }
+    
+    func getAllEventsData() {
+        Alamofire.request(.GET, "http://api.majorproject.dev/event/").validate().responseJSON { response in
+                print(response.request)  // original URL request
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+            if let JSON = response.result.value {
+                    
+                let events = Mapper<CompleteEventResponse>().map(JSON)
+                print(events)
+                
+                guard let eventData = events?.data else { return }
+                
+                for event in eventData {
+                    
+                    let event = event as EventResponse?
+                    
+                    var c = CellData()
+                    c.organizerId = event?.organizerId
+                    c.title = event?.title
+                    c.description = "uikuikui"
+                    c.dateTime = event?.dateTime
+                    c.location = "ergeg"
+                    c.price = event?.price
+                    c.limitReservations = event?.limitReservations
+                    
+                    self.dataSource.append(c)
+                }
+                
+                self.tableView.reloadData()
+            }
+        }
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.getAllEventsData()
+        
     }
 
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        return self.dataSource.count
     }
 
-    /*
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
+        
+        let data = self.dataSource[indexPath.row]
+        
+        guard let cell = tableView.dequeueReusableCellWithIdentifier("EventsTableViewCellID", forIndexPath: indexPath) as? EventsTableViewCell else {
+            fatalError("Could not requeue cell: \(EventsTableViewCell.self) with identifier: EventsTableViewCellID")
+        }
 
-        // Configure the cell...
-
+        cell.configureCell(data)
+        
         return cell
     }
-    */
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
 
     /*
     // Override to support conditional editing of the table view.
