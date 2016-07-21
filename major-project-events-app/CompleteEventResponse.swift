@@ -30,9 +30,6 @@ struct EventResponse: Mappable {
     var location: String?
     var price: Int?
     var limitReservations: Int?
-    var createdAt: String?
-    var updatedAt: String?
-    var deletedAt: String?
     
     init?(_ map: Map) {}
     
