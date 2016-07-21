@@ -281,6 +281,9 @@
                                                     <date key="date" timeIntervalSinceReferenceDate="490189657.849545">
                                                         <!--2016-07-14 11:47:37 +0000-->
                                                     </date>
+                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                                        <rect key="frame" x="40" y="-29" width="320" height="217"/>
+                                                    </variation>
                                                 </datePicker>
                                             </subviews>
                                             <constraints>
