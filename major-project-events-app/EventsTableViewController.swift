@@ -52,9 +52,9 @@ class EventsTableViewController: UITableViewController {
                     var c = CellData()
                     c.organizerId = event?.organizerId
                     c.title = event?.title
-                    c.description = "uikuikui"
+                    c.description = event?.eventDescription
                     c.dateTime = event?.dateTime
-                    c.location = "ergeg"
+                    c.location = event?.location
                     c.price = event?.price
                     c.limitReservations = event?.limitReservations
                     
@@ -70,10 +70,7 @@ class EventsTableViewController: UITableViewController {
         super.viewWillAppear(animated)
         
         self.getAllEventsData()
-        
     }
-
-    // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
@@ -101,14 +98,6 @@ class EventsTableViewController: UITableViewController {
     }
 
     /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
     // Override to support editing the table view.
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
@@ -132,16 +121,6 @@ class EventsTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         // Return false if you do not want the item to be re-orderable.
         return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
     }
     */
 

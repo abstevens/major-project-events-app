@@ -47,11 +47,15 @@ class EventsTableViewCell: UITableViewCell {
         }
         
         if let price = data.price {
-            self.priceLabel.text = String(price)
+            self.priceLabel.text = "€" + String(price)
+        } else {
+            self.priceLabel.text = "FREE"
         }
         
         if let limitReservations = data.limitReservations {
-            self.limitReservationsLabel.text = String(limitReservations)
+            self.limitReservationsLabel.text = String(limitReservations) + " maximum"
+        } else {
+            self.limitReservationsLabel.text = "Unlimited"
         }
     }
     
