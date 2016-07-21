@@ -37,9 +37,11 @@ struct EventResponse: Mappable {
     init?(_ map: Map) {}
     
     mutating func mapping(map: Map) {
-        self.id <- map["id"]
+        self.organizerId <- map["organizer_id"]
         self.title <- map["title"]
+        self.eventDescription <- map["description"]
         self.dateTime <- map["date_time"]
+        self.location <- map["location"]
         self.price <- map["price"]
         self.limitReservations <- map["limit_reservations"]
     }
