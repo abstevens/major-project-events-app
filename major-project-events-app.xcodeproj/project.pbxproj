@@ -20,6 +20,7 @@
 		B9A83C181D3D35F3006B3D0D /* EventsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9A83C161D3D35F3006B3D0D /* EventsTableViewCell.swift */; };
 		B9A83C3B1D3E67CB006B3D0D /* EventsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9A83C3A1D3E67CB006B3D0D /* EventsTableViewCell.xib */; };
 		B9A83C5D1D3EBE53006B3D0D /* CompleteEventResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9A83C5C1D3EBE53006B3D0D /* CompleteEventResponse.swift */; };
+		B9C6FFA21D5512BB00179F1E /* ProfileHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C6FFA11D5512BB00179F1E /* ProfileHeaderCell.swift */; };
 		E5463ADA8E511E9844A5C028 /* Pods_major_project_events_app.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65DE681026A2B627DEFA2148 /* Pods_major_project_events_app.framework */; };
 /* End PBXBuildFile section */
 
@@ -42,6 +43,7 @@
 		B9A83C161D3D35F3006B3D0D /* EventsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsTableViewCell.swift; sourceTree = "<group>"; };
 		B9A83C3A1D3E67CB006B3D0D /* EventsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventsTableViewCell.xib; sourceTree = "<group>"; };
 		B9A83C5C1D3EBE53006B3D0D /* CompleteEventResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompleteEventResponse.swift; sourceTree = "<group>"; };
+		B9C6FFA11D5512BB00179F1E /* ProfileHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileHeaderCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,10 +118,9 @@
 		B98576291D381229009E8532 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				B9C6FFA01D55125A00179F1E /* Cells */,
 				B985761C1D37A891009E8532 /* LoginViewController.swift */,
 				B985761E1D37A8BA009E8532 /* EventsTableViewController.swift */,
-				B9A83C161D3D35F3006B3D0D /* EventsTableViewCell.swift */,
-				B9A83C3A1D3E67CB006B3D0D /* EventsTableViewCell.xib */,
 				B98576201D37A8D5009E8532 /* CreateTableViewController.swift */,
 				B98576221D37A8EE009E8532 /* ProfileTableViewController.swift */,
 				B98576241D37A8FC009E8532 /* EditProfileTableViewController.swift */,
@@ -134,6 +135,16 @@
 				B9A83C5C1D3EBE53006B3D0D /* CompleteEventResponse.swift */,
 			);
 			name = Service;
+			sourceTree = "<group>";
+		};
+		B9C6FFA01D55125A00179F1E /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				B9A83C161D3D35F3006B3D0D /* EventsTableViewCell.swift */,
+				B9C6FFA11D5512BB00179F1E /* ProfileHeaderCell.swift */,
+				B9A83C3A1D3E67CB006B3D0D /* EventsTableViewCell.xib */,
+			);
+			name = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -266,6 +277,7 @@
 				B9A83C5D1D3EBE53006B3D0D /* CompleteEventResponse.swift in Sources */,
 				B985760B1D37A835009E8532 /* AppDelegate.swift in Sources */,
 				B9A83C181D3D35F3006B3D0D /* EventsTableViewCell.swift in Sources */,
+				B9C6FFA21D5512BB00179F1E /* ProfileHeaderCell.swift in Sources */,
 				B985761F1D37A8BA009E8532 /* EventsTableViewController.swift in Sources */,
 				B98576251D37A8FC009E8532 /* EditProfileTableViewController.swift in Sources */,
 				B98576271D37A90A009E8532 /* SettingsTableViewController.swift in Sources */,

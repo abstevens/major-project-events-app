@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class CreateTableViewController: UITableViewController, UITextFieldDelegate, UITextViewDelegate {
 
@@ -97,12 +98,15 @@ class CreateTableViewController: UITableViewController, UITextFieldDelegate, UIT
     
     
     @IBAction func createTapped(sender: AnyObject) {
-        let title: String! = titleTextField.text
-        let description: String! = descriptionTextView.text
-        let date: String! = dateDetailLabel.text
-        let location: String! = locationTextField.text
-        let price: Int? = Int(priceTextField.text!)
-        let limitReservations: Int? = Int(limitReservationsTextField.text!)
+        let title = titleTextField.text ?? ""
+        let description = descriptionTextView.text ?? ""
+        let date = dateDetailLabel.text ?? ""
+        let location = locationTextField.text ?? ""
+        let price = Int(priceTextField.text ?? "")
+        let limitReservations = Int(limitReservationsTextField.text ?? "")
+        
+        var hasBasic: Bool = false
+        var hasAdvanced: Bool = false
         
         if (title.isEmpty || description.isEmpty || date.isEmpty || location.isEmpty) {
             // Require basic informaiton
@@ -124,82 +128,50 @@ class CreateTableViewController: UITableViewController, UITextFieldDelegate, UIT
             
             let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: UIAlertControllerStyle.Alert)
             alert.addAction(UIAlertAction(title: alertOkButton, style: .Default, handler: { (action: UIAlertAction!) in
-                
+                hasBasic = true
             }))
             alert.addAction(UIAlertAction(title: alertCancelButton, style: .Cancel, handler: nil))
             
             presentViewController(alert, animated: true, completion: nil)
         } else {
-            // Save the data
+            hasBasic = true
+            hasAdvanced = true
+        }
+        
+        if hasBasic {
+            // make data package and send to server
+            var data = EventNode()!
+            data.organizerId = 1
+            data.title = title
+            data.eventDescription = description
+            data.dateTime = date
+            data.location = location
+            
+            if hasAdvanced {
+                data.price = price
+                data.limitReservations = limitReservations
+            } else {
+                data.price = nil
+                data.limitReservations = nil
+            }
+            print(data.toJSONString()!)
+
+            storeData(data)
+            let alertTitle: String = "Event Saved"
+            let alertMessage: String = "You have successfully created a new event!"
+            let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action: UIAlertAction!) in
+                
+            }))
+            presentViewController(alert, animated: true, completion: nil)
+        }
+        
+    }
+    
+    func storeData(data: EventNode) {
+        Alamofire.request(.POST, "http://api.majorproject.dev/event/", parameters: data.toJSON(), encoding: .JSON).responseJSON { response in
+            return response.result.isSuccess
         }
     }
-
-
-    // MARK: - Table view data source
-
-//    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-//        // #warning Incomplete implementation, return the number of sections
-//        return 0
-//    }
-//
-//    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        // #warning Incomplete implementation, return the number of rows
-//        return 0
-//    }
-
-    /*
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
-
-        // Configure the cell...
-
-        return cell
-    }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    
 }

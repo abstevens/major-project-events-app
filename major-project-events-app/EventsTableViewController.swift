@@ -35,28 +35,27 @@ class EventsTableViewController: UITableViewController {
     }
     
     func getAllEventsData() {
+        // empties out data in array
+        self.dataSource.removeAll()
+        
+        
         Alamofire.request(.GET, "http://api.majorproject.dev/event/").validate().responseJSON { response in
-                print(response.request)  // original URL request
-
             if let JSON = response.result.value {
                     
                 let events = Mapper<CompleteEventResponse>().map(JSON)
-                print(events)
                 
                 guard let eventData = events?.data else { return }
                 
                 for event in eventData {
                     
-                    let event = event as EventResponse?
-                    
                     var c = CellData()
-                    c.organizerId = event?.organizerId
-                    c.title = event?.title
-                    c.description = event?.eventDescription
-                    c.dateTime = event?.dateTime
-                    c.location = event?.location
-                    c.price = event?.price
-                    c.limitReservations = event?.limitReservations
+                    c.organizerId = event.organizerId
+                    c.title = event.title
+                    c.description = event.eventDescription
+                    c.dateTime = event.dateTime
+                    c.location = event.location
+                    c.price = event.price
+                    c.limitReservations = event.limitReservations
                     
                     self.dataSource.append(c)
                 }
@@ -96,32 +95,5 @@ class EventsTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
 
 }

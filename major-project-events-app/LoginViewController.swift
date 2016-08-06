@@ -25,13 +25,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(self.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
-        
-        //self.callService()
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     @objc
@@ -41,17 +38,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     func callService() {
-        Alamofire.request(.GET, "http://api.majorproject.dev/school/")
-            .responseJSON { response in
-                print(response.request)  // original URL request
-                print(response.response) // URL response
-                print(response.data)     // server data
-                print(response.result)   // result of response serialization
-                
-                if let JSON = response.result.value {
-                    print("JSON: \(JSON)")
-                }
+        let credentials = ["username": "bla", "passwrd": "s3cr3t"]
+        
+        
+        Alamofire.request(.POST, "http://api.majorproject.dev/user/", parameters: credentials, encoding: .JSON).responseJSON { response in
+            debugPrint(response)
         }
+
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
@@ -123,14 +116,5 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             self.performSegueWithIdentifier("TabBarViewSegue", sender: self)
         }
     }
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
+
 }

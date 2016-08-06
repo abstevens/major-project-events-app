@@ -11,7 +11,7 @@ import ObjectMapper
 
 struct CompleteEventResponse: Mappable {
     
-    var data: [EventResponse]?
+    var data: [EventNode]?
     
     init?(_ map: Map) {}
     
@@ -20,7 +20,7 @@ struct CompleteEventResponse: Mappable {
     }
 }
 
-struct EventResponse: Mappable {
+struct EventNode: Mappable {
     
     var id: Int?
     var organizerId: Int?
@@ -32,6 +32,7 @@ struct EventResponse: Mappable {
     var limitReservations: Int?
     
     init?(_ map: Map) {}
+    init?() {}
     
     mutating func mapping(map: Map) {
         self.organizerId <- map["organizer_id"]
