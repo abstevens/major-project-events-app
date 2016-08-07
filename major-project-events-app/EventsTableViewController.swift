@@ -27,7 +27,7 @@ class EventsTableViewController: UITableViewController {
     var eventOrganizerId: Int!
     var eventTitle: String!
     var eventDescription: String!
-    var eventDate: String?
+    var eventDate: String!
     var eventLocation: String!
     var eventPrice: Int!
     var eventReservations: Int!
@@ -114,8 +114,17 @@ class EventsTableViewController: UITableViewController {
         self.eventDescription = cell.descriptionLabel
         self.eventDate = cell.dateTimeLabel.text
         self.eventLocation = cell.locationLabel.text
-        self.eventPrice = Int(cell.priceLabel)
-        self.eventReservations = Int(cell.limitReservationsLabel)
+        if cell.priceLabel != nil {
+            self.eventPrice = Int(cell.priceLabel)
+        } else {
+            self.eventPrice = nil
+        }
+        
+        if cell.limitReservationsLabel != nil {
+            self.eventReservations = Int(cell.limitReservationsLabel)
+        } else {
+            self.eventReservations = nil
+        }
         self.performSegueWithIdentifier("eventsToEvent", sender: self)
     }
     

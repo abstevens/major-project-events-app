@@ -26,7 +26,7 @@ class EventsTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        self.contentView.backgroundColor = UIColor.greenColor()
+//        self.contentView.backgroundColor = UIColor.greenColor()
     }
 
     override func setSelected(selected: Bool, animated: Bool) {

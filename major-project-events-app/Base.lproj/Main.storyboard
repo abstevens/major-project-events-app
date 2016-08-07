@@ -34,7 +34,7 @@
         <scene sceneID="8h4-XS-jyi">
             <objects>
                 <tableViewController id="SLe-vU-XRh" customClass="SingleEventTableViewController" customModule="major_project_events_app" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="RqK-c1-B3c">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="RqK-c1-B3c">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -48,9 +48,9 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kBr-s2-OD8">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kBr-s2-OD8">
                                                     <rect key="frame" x="-42" y="-21" width="42" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -58,6 +58,7 @@
                                             <constraints>
                                                 <constraint firstItem="kBr-s2-OD8" firstAttribute="leading" secondItem="Kvf-eY-sjt" secondAttribute="leadingMargin" constant="7" id="7f3-em-EID"/>
                                                 <constraint firstItem="kBr-s2-OD8" firstAttribute="centerY" secondItem="Kvf-eY-sjt" secondAttribute="centerY" id="kUK-AN-5jv"/>
+                                                <constraint firstItem="kBr-s2-OD8" firstAttribute="centerX" secondItem="Kvf-eY-sjt" secondAttribute="centerX" id="zyD-BB-fH7"/>
                                             </constraints>
                                             <variation key="default">
                                                 <mask key="subviews">
@@ -66,6 +67,7 @@
                                                 <mask key="constraints">
                                                     <exclude reference="7f3-em-EID"/>
                                                     <exclude reference="kUK-AN-5jv"/>
+                                                    <exclude reference="zyD-BB-fH7"/>
                                                 </mask>
                                             </variation>
                                             <variation key="heightClass=regular-widthClass=compact">
@@ -75,6 +77,7 @@
                                                 <mask key="constraints">
                                                     <include reference="7f3-em-EID"/>
                                                     <include reference="kUK-AN-5jv"/>
+                                                    <include reference="zyD-BB-fH7"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
@@ -88,7 +91,7 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5zU-BL-paO">
                                                     <rect key="frame" x="-42" y="-21" width="42" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>

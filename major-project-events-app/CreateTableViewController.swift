@@ -154,7 +154,6 @@ class CreateTableViewController: UITableViewController, UITextFieldDelegate, UIT
                 data.price = nil
                 data.limitReservations = nil
             }
-            print(data.toJSONString()!)
 
             storeData(data)
             let alertTitle: String = "Event Saved"

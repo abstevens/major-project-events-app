@@ -35,10 +35,11 @@ class SingleEventTableViewController: UITableViewController {
         super.viewDidLoad()
         
         if self.eventOrganizerId != nil {
-            let organizerData = getOrganizerInfo(eventOrganizerId)
-            self.organizerLabel.text = organizerData["username"]
+//            let organizerData = getOrganizerInfo(eventOrganizerId)
+//            self.organizerLabel.text = organizerData["username"]
+            self.organizerLabel.text = "Organized by Unknown organizer"
         } else {
-            self.organizerLabel.text = "Unknown organizer"
+            self.organizerLabel.text = "Organized by Unknown organizer"
         }
         self.titleLabel.text = self.eventTitle
         self.descriptionLabel.text = self.eventDescription
@@ -46,41 +47,69 @@ class SingleEventTableViewController: UITableViewController {
         self.locationLabel.text = self.eventLocation
         
         if self.eventPrice != nil {
-            self.priceLabel.text = String(self.eventPrice)
+            self.priceLabel.text = "$" + String(self.eventPrice)
         } else {
             self.priceLabel.text = "Free"
         }
         
         if self.eventReservations != nil {
-            self.reservationsLabel.text = String(self.eventReservations)
+            self.reservationsLabel.text = String(self.eventReservations) + " reservations"
         } else {
             self.reservationsLabel.text = "Unlimited"
         }
     }
     
-    func getOrganizerInfo(organizerId: Int) -> Dictionary<String, String> {
-        var organizerData: [String: String] = [:]
+    func fixCellSizes() {
+        self.descriptionLabel.numberOfLines = 0
         
-        // Request user from id
-        Alamofire.request(.GET, "http://api.majorproject.dev/user/\(organizerId)").validate().responseJSON { response in
-            if let JSON = response.result.value {
-                // Map JSON response to user
-                let user = Mapper<CompleteUserResponse>().map(JSON)
-                
-                // Assign user.data to userData
-                guard let userData = user?.data else { return }
-                
-                organizerData = [
-                    "id": String(userData.id),
-                    "username": userData.username!,
-                    "email": userData.email!,
-                ]
-                
-//                self.userUsername = userData.username!
-            }
-        }
-        print(organizerData)
-        return organizerData
     }
     
+//    func getOrganizerInfo(organizerId: Int) -> Dictionary<String, String> {
+//        var organizerData: [String: String] = [:]
+//        
+//        // Request user from id
+//        Alamofire.request(.GET, "http://api.majorproject.dev/user/\(organizerId)").validate().responseJSON { response in
+//            if let JSON = response.result.value {
+//                // Map JSON response to user
+//                let user = Mapper<CompleteUserResponse>().map(JSON)
+//                
+//                // Assign user.data to userData
+//                guard let userData = user?.data else { return }
+//                
+//                organizerData = [
+//                    "id": String(userData.id),
+//                    "username": userData.username!,
+//                    "email": userData.email!,
+//                ]
+//                
+////                self.userUsername = userData.username!
+//            }
+//        }
+//        return organizerData
+//    }
+    
+//    func getOrganizerInfo(organizerId: Int) -> [String: String]? {
+//        var organizerData: [String: String] = [:]
+//        
+//        // Request user from id
+//        Alamofire.request(.GET, "http://api.majorproject.dev/user/\(organizerId)").validate().responseJSON { response in
+//            if let JSON = response.result.value {
+//                // Map JSON response to user
+//                let user = Mapper<CompleteUserResponse>().map(JSON)
+//                
+//                // Assign user.data to userData
+//                guard let userData = user?.data else { return }
+//                
+//                organizerData = [
+//                    "id": String(userData.id),
+//                    "username": userData.username!,
+//                    "email": userData.email!,
+//                ]
+//                
+//                debugPrint(organizerData)
+//                return organizerData
+//            }
+//        }
+//        return nil
+//    }
 }
