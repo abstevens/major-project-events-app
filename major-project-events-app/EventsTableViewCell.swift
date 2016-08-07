@@ -10,12 +10,17 @@ import UIKit
 
 class EventsTableViewCell: UITableViewCell {
     
+//    @IBOutlet weak var organizerIdLabel: UILabel!
+    var organizerIdLabel: String!
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var descriptionLabel: UILabel!
+//    @IBOutlet weak var descriptionLabel: UILabel!
+    var descriptionLabel: String!
     @IBOutlet weak var dateTimeLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
-    @IBOutlet weak var priceLabel: UILabel!
-    @IBOutlet weak var limitReservationsLabel: UILabel!
+//    @IBOutlet weak var priceLabel: UILabel!
+    var priceLabel: String!
+//    @IBOutlet weak var limitReservationsLabel: UILabel!
+    var limitReservationsLabel: String!
     
 
     override func awakeFromNib() {
@@ -29,12 +34,16 @@ class EventsTableViewCell: UITableViewCell {
     }
     
     func configureCell(data: CellData) {
+        if let oid = data.organizerId {
+            self.organizerIdLabel = String(oid)
+        }
+        
         if let title = data.title {
             self.titleLabel.text = title
         }
         
         if let description = data.description {
-            self.descriptionLabel.text = description
+            self.descriptionLabel = description
         }
         
         if let dateTime = data.dateTime {
@@ -46,15 +55,11 @@ class EventsTableViewCell: UITableViewCell {
         }
         
         if let price = data.price {
-            self.priceLabel.text = "€" + String(price)
-        } else {
-            self.priceLabel.text = "FREE"
+            self.priceLabel = String(price)
         }
         
         if let limitReservations = data.limitReservations {
-            self.limitReservationsLabel.text = String(limitReservations) + " maximum"
-        } else {
-            self.limitReservationsLabel.text = "Unlimited"
+            self.limitReservationsLabel = String(limitReservations)
         }
     }
     

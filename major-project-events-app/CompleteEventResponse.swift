@@ -1,5 +1,5 @@
 //
-//  EventResponse.swift
+//  CompleteEventResponse.swift
 //  major-project-events-app
 //
 //  Created by Alex Stevens on 19/07/16.

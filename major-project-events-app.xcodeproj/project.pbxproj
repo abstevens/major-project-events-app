@@ -21,6 +21,8 @@
 		B9A83C3B1D3E67CB006B3D0D /* EventsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B9A83C3A1D3E67CB006B3D0D /* EventsTableViewCell.xib */; };
 		B9A83C5D1D3EBE53006B3D0D /* CompleteEventResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9A83C5C1D3EBE53006B3D0D /* CompleteEventResponse.swift */; };
 		B9C6FFA21D5512BB00179F1E /* ProfileHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C6FFA11D5512BB00179F1E /* ProfileHeaderCell.swift */; };
+		B9C6FFA41D565E6800179F1E /* SingleEventTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C6FFA31D565E6800179F1E /* SingleEventTableViewController.swift */; };
+		B9C6FFA61D578A4600179F1E /* CompleteUserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9C6FFA51D578A4600179F1E /* CompleteUserResponse.swift */; };
 		E5463ADA8E511E9844A5C028 /* Pods_major_project_events_app.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65DE681026A2B627DEFA2148 /* Pods_major_project_events_app.framework */; };
 /* End PBXBuildFile section */
 
@@ -44,6 +46,8 @@
 		B9A83C3A1D3E67CB006B3D0D /* EventsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventsTableViewCell.xib; sourceTree = "<group>"; };
 		B9A83C5C1D3EBE53006B3D0D /* CompleteEventResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompleteEventResponse.swift; sourceTree = "<group>"; };
 		B9C6FFA11D5512BB00179F1E /* ProfileHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileHeaderCell.swift; sourceTree = "<group>"; };
+		B9C6FFA31D565E6800179F1E /* SingleEventTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleEventTableViewController.swift; sourceTree = "<group>"; };
+		B9C6FFA51D578A4600179F1E /* CompleteUserResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompleteUserResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,7 +104,6 @@
 				B985760A1D37A835009E8532 /* AppDelegate.swift */,
 				B98576281D3811D0009E8532 /* UI */,
 				B98576111D37A835009E8532 /* Assets.xcassets */,
-				B98576131D37A835009E8532 /* LaunchScreen.storyboard */,
 				B98576161D37A835009E8532 /* Info.plist */,
 			);
 			path = "major-project-events-app";
@@ -110,6 +113,7 @@
 			isa = PBXGroup;
 			children = (
 				B985760E1D37A835009E8532 /* Main.storyboard */,
+				B98576131D37A835009E8532 /* LaunchScreen.storyboard */,
 				B98576291D381229009E8532 /* ViewControllers */,
 			);
 			name = UI;
@@ -121,6 +125,7 @@
 				B9C6FFA01D55125A00179F1E /* Cells */,
 				B985761C1D37A891009E8532 /* LoginViewController.swift */,
 				B985761E1D37A8BA009E8532 /* EventsTableViewController.swift */,
+				B9C6FFA31D565E6800179F1E /* SingleEventTableViewController.swift */,
 				B98576201D37A8D5009E8532 /* CreateTableViewController.swift */,
 				B98576221D37A8EE009E8532 /* ProfileTableViewController.swift */,
 				B98576241D37A8FC009E8532 /* EditProfileTableViewController.swift */,
@@ -133,6 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				B9A83C5C1D3EBE53006B3D0D /* CompleteEventResponse.swift */,
+				B9C6FFA51D578A4600179F1E /* CompleteUserResponse.swift */,
 			);
 			name = Service;
 			sourceTree = "<group>";
@@ -278,6 +284,8 @@
 				B985760B1D37A835009E8532 /* AppDelegate.swift in Sources */,
 				B9A83C181D3D35F3006B3D0D /* EventsTableViewCell.swift in Sources */,
 				B9C6FFA21D5512BB00179F1E /* ProfileHeaderCell.swift in Sources */,
+				B9C6FFA41D565E6800179F1E /* SingleEventTableViewController.swift in Sources */,
+				B9C6FFA61D578A4600179F1E /* CompleteUserResponse.swift in Sources */,
 				B985761F1D37A8BA009E8532 /* EventsTableViewController.swift in Sources */,
 				B98576251D37A8FC009E8532 /* EditProfileTableViewController.swift in Sources */,
 				B98576271D37A90A009E8532 /* SettingsTableViewController.swift in Sources */,

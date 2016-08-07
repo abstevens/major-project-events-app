@@ -23,6 +23,14 @@ struct CellData {
 class EventsTableViewController: UITableViewController {
     
     var dataSource:[CellData] = [CellData]()
+    
+    var eventOrganizerId: Int!
+    var eventTitle: String!
+    var eventDescription: String!
+    var eventDate: String?
+    var eventLocation: String!
+    var eventPrice: Int!
+    var eventReservations: Int!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,22 +38,24 @@ class EventsTableViewController: UITableViewController {
         let nib = UINib(nibName: "EventsTableViewCell", bundle: nil)
         self.tableView.registerNib(nib, forCellReuseIdentifier: "EventsTableViewCellID")
 
-        self.tableView.estimatedRowHeight = 171
+        self.tableView.estimatedRowHeight = 124
         self.tableView.rowHeight = UITableViewAutomaticDimension
     }
     
     func getAllEventsData() {
-        // empties out data in array
+        // Empties out data in array
         self.dataSource.removeAll()
         
-        
+        // Request all events
         Alamofire.request(.GET, "http://api.majorproject.dev/event/").validate().responseJSON { response in
             if let JSON = response.result.value {
-                    
+                // Map JSON response to events
                 let events = Mapper<CompleteEventResponse>().map(JSON)
                 
+                // Assign events.data to eventData
                 guard let eventData = events?.data else { return }
                 
+                // Assign each event data to dataSource
                 for event in eventData {
                     
                     var c = CellData()
@@ -60,6 +70,12 @@ class EventsTableViewController: UITableViewController {
                     self.dataSource.append(c)
                 }
                 
+                // Sort events
+                self.dataSource.sortInPlace({ (event1:CellData, event2:CellData) -> Bool in
+                    event1.dateTime < event2.dateTime
+                })
+                
+                // Reload TableView data
                 self.tableView.reloadData()
             }
         }
@@ -80,7 +96,6 @@ class EventsTableViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
         let data = self.dataSource[indexPath.row]
         
         guard let cell = tableView.dequeueReusableCellWithIdentifier("EventsTableViewCellID", forIndexPath: indexPath) as? EventsTableViewCell else {
@@ -90,6 +105,52 @@ class EventsTableViewController: UITableViewController {
         cell.configureCell(data)
         
         return cell
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let cell = self.tableView.cellForRowAtIndexPath(indexPath) as! EventsTableViewCell
+        self.eventOrganizerId = Int(cell.organizerIdLabel)
+        self.eventTitle = cell.titleLabel.text
+        self.eventDescription = cell.descriptionLabel
+        self.eventDate = cell.dateTimeLabel.text
+        self.eventLocation = cell.locationLabel.text
+        self.eventPrice = Int(cell.priceLabel)
+        self.eventReservations = Int(cell.limitReservationsLabel)
+        self.performSegueWithIdentifier("eventsToEvent", sender: self)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "eventsToEvent" {
+            if let destination = segue.destinationViewController as? SingleEventTableViewController {
+                if (self.eventOrganizerId != nil) {
+                    destination.eventOrganizerId = self.eventOrganizerId
+                }
+                
+                if !(self.eventTitle?.isEmpty)! {
+                    destination.eventTitle = self.eventTitle
+                }
+                
+                if !(self.eventDescription?.isEmpty)! {
+                    destination.eventDescription = self.eventDescription
+                }
+                
+                if !(self.eventDate?.isEmpty)! {
+                    destination.eventDate = self.eventDate
+                }
+                
+                if !(self.eventLocation?.isEmpty)! {
+                    destination.eventLocation = self.eventLocation
+                }
+                
+                if (self.eventPrice != nil) {
+                    destination.eventPrice = self.eventPrice
+                }
+                
+                if (self.eventReservations != nil) {
+                    destination.eventReservations = self.eventReservations
+                }
+            }
+        }
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
