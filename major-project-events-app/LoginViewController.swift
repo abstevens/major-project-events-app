@@ -40,15 +40,15 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         passwordTextField.resignFirstResponder()
     }
     
-    func callService() {
-        let credentials = ["username": "bla", "passwrd": "s3cr3t"]
-        
-        
-        Alamofire.request(.POST, "http://api.majorproject.dev/user/", parameters: credentials, encoding: .JSON).responseJSON { response in
-            debugPrint(response)
-        }
-
-    }
+//    func checkCredentials() {
+//        let credentials = ["username": "...", "password": "..."]
+//        
+//        
+//        Alamofire.request(.POST, "http://api.majorproject.dev/user/", parameters: credentials, encoding: .JSON).responseJSON { response in
+//            debugPrint(response)
+//        }
+//
+//    }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         if (textField == emailTextField) {
@@ -106,10 +106,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         let password = passwordTextField.text
         
         // Send request of login details to server.
-        email
-        password
+//        self.checkCredentials()
         
-        if (true) { // If login is successful.
+        if (email == "Test" && password == "1111") { // If login is successful.
             
             // Set a global that user is logged in.
             NSUserDefaults.standardUserDefaults().setBool(true, forKey: "isUserLoggedIn")
@@ -117,6 +116,15 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             
             // Move to Tab Bar Controller.
             self.performSegueWithIdentifier("TabBarViewSegue", sender: self)
+        } else {
+            let alertTitle: String = "Invaid Credentials"
+            let alertMessage: String = "The email and password combination you have entered is not in our system. Please try again with a different email or password."
+            let alertButton: String = "OK"
+            
+            let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: alertButton, style: .Cancel, handler: nil))
+            
+            presentViewController(alert, animated: true, completion: nil)
         }
     }
 
